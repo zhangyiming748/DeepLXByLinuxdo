@@ -1,0 +1,2 @@
+# DeepLXByLinuxdo
+使用linuxdo官网提供的deeplx翻译服务
