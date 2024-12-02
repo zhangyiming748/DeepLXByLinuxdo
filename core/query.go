@@ -58,6 +58,7 @@ func QueryTranslationResult(src string, source_lang, target_lang string) (a Answ
 			From:       "缓存",
 		}, nil
 	}
+
 	token := os.Getenv("TOKEN")
 	if token == "" {
 		notfound := errors.New("没有找到deeplx的apikey环境变量$TOKEN")

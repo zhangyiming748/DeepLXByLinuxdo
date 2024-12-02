@@ -36,6 +36,7 @@ func main() {
 	engine := gin.New()
 	engine.Use(timeoutMiddleware())
 	bootstrap.InitTranslate(engine)
+	//bootstrap.InitHello(engine)
 	// 启动http服务
 	engine.Run(":8192")
 }

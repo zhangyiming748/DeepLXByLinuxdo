@@ -4,12 +4,13 @@ name: deeplx
 services:
   mysql:
     container_name: mysql9
-    volumes:
-      - ./mysql:/var/lib/mysql
+#    volumes:
+#      - ./mysql:/var/lib/mysql
+#      - ./:/data
     environment:
       - MYSQL_ROOT_PASSWORD=123456
     ports:
-      - 3306:3306
+      - 33060:3306
     image: mysql:9.1.0
     restart: always
   golang:
@@ -19,16 +20,16 @@ services:
     volumes:
       - ./:/data
     ports:
-      - 3389:8192
+      - 8192:8192
     environment:
-      - TOKEN=${TOKEN}
-      - MYSQL_HOSTNAME=${和上方保持一致}
-      - MYSQL_PORT=${和上方保持一致}
-      - MYSQL_PASSWD=${和上方保持一致}
-    image: zhangyiming748/linuxdo_deeplx:latest
-#    build:
-#      context: .
-#      tags:
-#        - gin:latest
-#      dockerfile: dockerfile
+      - TOKEN=
+      - MYSQL_HOSTNAME=mysql
+      - MYSQL_PORT=33060
+      - MYSQL_PASSWD=123456
+#    image: zhangyiming748/linuxdo_deeplx:latest
+    build:
+      context: .
+      tags:
+        - gin:latest
+      dockerfile: dockerfile
     restart: always
