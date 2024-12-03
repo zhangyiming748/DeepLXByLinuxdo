@@ -2,6 +2,7 @@ package controller
 
 import (
 	"DeepLXByLinuxdo/core"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -45,8 +46,6 @@ func (t TranslateController) TransWord(ctx *gin.Context) {
 	}
 	rep.Src = result.Src
 	rep.Dst = result.Dst
-	rep.Source = result.SourceLang
-	rep.Target = result.TargetLang
 	rep.From = result.From
 	ctx.JSON(200, rep)
 }

@@ -12,3 +12,6 @@ COPY . .
 RUN go mod tidy
 RUN go build -o /usr/local/bin/gin main.go
 ENTRYPOINT ["/usr/local/bin/gin"]
+# docker run -dit --name sql -v /Users/zen/github/DeepLXByLinuxdo:/data golang:1.23.3-alpine3.20 ash
+#export CGO_ENABLED=1
+#apk add build-base sqlite-dev sqlite-libs

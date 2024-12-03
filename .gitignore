@@ -1,3 +1,6 @@
 .idea
 mysql
 *.log
+*.db
+*.db-shm
+*.db-wal

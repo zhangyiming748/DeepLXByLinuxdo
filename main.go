@@ -3,11 +3,12 @@ package main
 import (
 	"DeepLXByLinuxdo/bootstrap"
 	"DeepLXByLinuxdo/storage"
-	"github.com/gin-contrib/timeout"
-	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/gin-contrib/timeout"
+	"github.com/gin-gonic/gin"
 )
 
 func testResponse(c *gin.Context) {
@@ -28,7 +29,7 @@ func timeoutMiddleware() gin.HandlerFunc {
 }
 func init() {
 	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
-	storage.SetMysql()
+	storage.SetDatabase()
 }
 func main() {
 	// gin服务
