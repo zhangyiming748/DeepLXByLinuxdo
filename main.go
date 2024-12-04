@@ -5,6 +5,7 @@ import (
 	"DeepLXByLinuxdo/storage"
 	"log"
 	"net/http"
+	"runtime"
 	"time"
 
 	"github.com/gin-contrib/timeout"
@@ -28,6 +29,9 @@ func timeoutMiddleware() gin.HandlerFunc {
 	)
 }
 func init() {
+	if runtime.GOOS == "windows" {
+		log.Fatalln("程序不可以在Windows上运行")
+	}
 	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
 	storage.SetDatabase()
 }

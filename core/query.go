@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/nalgeon/redka"
+	"log"
 	"os"
 	"strings"
 )
@@ -40,16 +42,18 @@ func QueryTranslationResult(src, source_lang, target_lang string) (a Answer, err
 		"source_lang": source_lang,
 		"target_lang": target_lang,
 	}
-	if cached, err := storage.GetDatabase().Str().Get(src); err != nil {
+	if cached, Err := storage.GetDatabase().Str().Get(src); Err != nil {
+		if errors.Is(Err, redka.ErrNotFound) {
+			log.Println("查询sqlite的错误:未找到缓存")
+		}
 	} else {
-
+		log.Println("从缓存中获取")
 		return Answer{
 			Src:  src,
 			Dst:  cached.String(),
 			From: "cache",
 		}, nil
 	}
-
 	token := os.Getenv("TOKEN")
 	if token == "" {
 		notfound := errors.New("没有找到deeplx的apikey环境变量$TOKEN")
@@ -63,6 +67,12 @@ func QueryTranslationResult(src, source_lang, target_lang string) (a Answer, err
 	fmt.Println(string(j))
 	var result DeeplxRep
 	json.Unmarshal(j, &result)
+	err = storage.GetDatabase().Str().Set(src, result.Data)
+	if err != nil {
+		return Answer{}, err
+	} else {
+		log.Printf("写入缓存")
+	}
 	return Answer{
 		Src:  src,
 		Dst:  result.Data,

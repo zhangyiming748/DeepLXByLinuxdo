@@ -2,7 +2,6 @@ package controller
 
 import (
 	"DeepLXByLinuxdo/core"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -18,8 +17,8 @@ type TranslateReq struct {
 type TranslateRep struct {
 	Src    string `json:"src"`
 	Dst    string `json:"dst"`
-	Source string `json:"source"`
-	Target string `json:"target"`
+	Source string `json:"source,omitempty"`
+	Target string `json:"target,omitempty"`
 	From   string `json:"from"`
 }
 
@@ -48,4 +47,5 @@ func (t TranslateController) TransWord(ctx *gin.Context) {
 	rep.Dst = result.Dst
 	rep.From = result.From
 	ctx.JSON(200, rep)
+	//ctx.Status(200)
 }

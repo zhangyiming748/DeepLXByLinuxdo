@@ -4,11 +4,15 @@ name: deeplx
 services:
   golang:
     container_name: program
-#    volumes:
-#      - ./database:/app/data
+    volumes:
+      - ./:/data
     ports:
       - 8192:8192
     environment:
       - TOKEN=
-    image: zhangyiming748/linuxdo_deeplx:latest
+    build:
+      context: .
+      tags:
+        - gin:local
+      dockerfile: dockerfile
     restart: always

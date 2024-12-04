@@ -1,12 +1,13 @@
 package core
 
 import (
-	"os"
+	"DeepLXByLinuxdo/storage"
 	"testing"
 )
 
+// go test -v -run TestQueryTranslationResult
 func TestQueryTranslationResult(t *testing.T) {
-	os.Setenv("TOKEN", "")
+	storage.SetDatabase()
 	result, err := QueryTranslationResult("hello", "", "")
 	if err != nil {
 		return

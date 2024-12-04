@@ -13,5 +13,5 @@ func GetDatabase() *redka.DB {
 	return db
 }
 func SetDatabase() {
-	db, _ = redka.Open("cache.db", nil)
+	db, _ = redka.Open("/app/data/cache.db", nil)
 }
