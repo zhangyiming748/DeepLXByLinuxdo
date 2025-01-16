@@ -1,0 +1,15 @@
+#docker run --name program -v ./:/data -p 3389:3389 golang:alpine3.20
+#sudo docker run --name mysql9  -v ./mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306  mysql:9.1.0
+name: deeplx
+services:
+  golang:
+    container_name: program
+    volumes:
+      - ./:/data
+    ports:
+      - 3389:8192
+    environment:
+      - TOKEN=
+      - SQL_SERVICE=192.168.1.9:3306
+    image: zhangyiming748/transervice
+    restart: always
