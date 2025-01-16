@@ -13,11 +13,11 @@ var engine *xorm.Engine
 
 func SetMysql() {
 	var err error
-	sqlService := os.Getenv("SQL_SERVICE")
+	sqlService := os.Getenv("SQLSERVICE")
 	if sqlService == "" {
-		log.Fatalf("SQL_SERVICE environment variable is not set")
+		log.Fatalf("SQLSERVICE environment variable is not set")
 	}
-	source := strings.Join([]string{"root:@tcp(", sqlService, ")/Translate?charset=utf8"}, "")
+	source := strings.Join([]string{"root:163453@tcp(", sqlService, ")/Translate?charset=utf8"}, "")
 	engine, err = xorm.NewEngine("mysql", source)
 	if err != nil {
 		panic(err)
