@@ -7,9 +7,9 @@ services:
     volumes:
       - ./:/data
     ports:
-      - 3389:8192
+      - 8192:2147
     environment:
-      - TOKEN=
-      - SQL_SERVICE=192.168.1.9:3306
+      - TOKEN=Ll3eVegZvHU4dB0JrEB8Ee6hGHgE5ZwUDdFeuzXrCM0
+      - SQLSERVICE=192.168.1.9:3306
     image: zhangyiming748/transervice
     restart: always

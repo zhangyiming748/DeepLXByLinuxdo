@@ -44,5 +44,5 @@ func main() {
 	engine.Use(timeoutMiddleware())
 	bootstrap.InitTranslate(engine)
 	// 启动http服务
-	engine.Run(":8192")
+	engine.Run(":2147")
 }
